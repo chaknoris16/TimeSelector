@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TimeSelector</class>
+ <widget class="QWidget" name="TimeSelector">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>167</width>
+    <height>94</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>TimeSelector</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">border-radius: 5px;
+background-color: rgba(72, 78, 95, 213);</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>167</width>
+     <height>92</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="minimumSize">
+       <size>
+        <width>110</width>
+        <height>87</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>110</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>SF Pro Text</family>
+        <pointsize>22</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QLineEdit
+ {
+border-radius: 0px;
+	color: rgb(255, 255, 255);
+}
+QLineEdit:hover
+{
+	
+	background-color: rgba(217, 217, 217, 0.17);
+}
+
+</string>
+      </property>
+      <property name="text">
+       <string>25</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="UpButton">
+        <property name="minimumSize">
+         <size>
+          <width>47</width>
+          <height>44</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>47</width>
+          <height>44</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+image: url(:/imges/UpArrow.svg);
+border-radius: 1px;
+}
+QPushButton:hover
+{
+	border-radius: 1px;
+	background-color: rgba(217, 217, 217, 0.17);
+}
+
+QPushButton:pressed 
+{
+	border-radius: 1px;
+	
+	background-color: rgba(79, 79, 79, 0.17 );
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="DownButton">
+        <property name="minimumSize">
+         <size>
+          <width>47</width>
+          <height>44</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>47</width>
+          <height>44</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton
+{
+image: url(:/imges/DownArrow.svg);
+border-radius: 0px;
+}
+QPushButton:hover
+{
+	border-radius: 0px;
+	background-color: rgba(217, 217, 217, 0.17)
+}
+QPushButton:pressed 
+{
+	border-radius: 1px;
+	
+	background-color: rgba(79, 79, 79, 0.17 );
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>59</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>SF Pro Text</family>
+     <pointsize>11</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(170, 170, 170);
+background-color: rgba(0, 0, 0, 0);</string>
+   </property>
+   <property name="text">
+    <string>mins</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
