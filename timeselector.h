@@ -3,11 +3,8 @@
 
 #include <QWidget>
 #include <QString>
-#include <QValidator>
 #include <QVariant>
 #include <QTimer>
-#include <QRegularExpression>
-#include <QRegularExpressionValidator>
 #include <QWheelEvent>
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -22,20 +19,21 @@ public:
     TimeSelector(QWidget *parent = nullptr);
     ~TimeSelector();
     int getCurrentTime();
-    template <typename T>
-    void setTime(const T& time);
+public slots:
+    void setTime(int time);
 signals:
     void timechange(int newTime);
 private:
     Ui::TimeSelector *ui;
-    QValidator *validator;
     QTimer* timerIncrement = new QTimer(this);
     QTimer* timerDecrement = new QTimer(this);
-    int timeCounterIncrement = 5;
     void connects();
+    int timeCounterIncrement = 5;
+    int minMins = 10;
+    int maxMins = 240;
 private slots:
-    void timeIncrement();
-    void timeDecrement();
+    void timeIncrementing();
+    void timeDecrementing();
 protected:
     bool eventFilter(QObject *obj, QEvent *event) override;
 };

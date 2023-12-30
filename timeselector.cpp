@@ -6,8 +6,6 @@ TimeSelector::TimeSelector(QWidget *parent)
     , ui(new Ui::TimeSelector)
 {
     ui->setupUi(this);
-    this->validator = new QRegularExpressionValidator(QRegularExpression("[0-9]"));
-    ui->lineEdit->setValidator(this->validator);
     ui->lineEdit->installEventFilter(this);
     this->timerIncrement->setInterval(50);
     this->timerDecrement->setInterval(50);
@@ -25,18 +23,28 @@ int TimeSelector::getCurrentTime()
     return ui->lineEdit->text().toInt();
 }
 
-template<typename T>
-void TimeSelector::setTime(const T &time)
+void TimeSelector::setTime(int time)
 {
-    ui->lineEdit->setText(QVariant(time).toString());
+    if(time > this->maxMins)
+    {
+        ui->lineEdit->setText(QString::number(this->maxMins));
+    } else if(time < this->minMins)
+    {
+        ui->lineEdit->setText(QString::number(this->minMins));
+    }else
+    {
+        ui->lineEdit->setText(QVariant(time).toString());
+    }
 }
 
 void TimeSelector::connects()
 {
     connect(ui->lineEdit, &QLineEdit::textChanged, this, [this](const QString& newTime){emit this->timechange(newTime.toInt());});
-    connect(timerIncrement, &QTimer::timeout, this, &TimeSelector::timeIncrement);
-    connect(timerDecrement, &QTimer::timeout, this, &TimeSelector::timeDecrement);
-
+    connect(timerIncrement, &QTimer::timeout, this, &TimeSelector::timeIncrementing);
+    connect(timerDecrement, &QTimer::timeout, this, &TimeSelector::timeDecrementing);
+    connect(ui->lineEdit, &QLineEdit::editingFinished, this, [this](){
+        this->setTime(this->getCurrentTime());
+    });
     connect(ui->UpButton, &QPushButton::pressed, this, [this](){
         timerIncrement->start();
     });
@@ -54,12 +62,12 @@ void TimeSelector::connects()
     });
 }
 
-void TimeSelector::timeIncrement()
+void TimeSelector::timeIncrementing()
 {
     this->setTime(ui->lineEdit->text().toInt() + timeCounterIncrement);
 }
 
-void TimeSelector::timeDecrement()
+void TimeSelector::timeDecrementing()
 {
     int currentTime = ui->lineEdit->text().toInt();
     if(currentTime >= 1) {
@@ -76,9 +84,9 @@ bool TimeSelector::eventFilter(QObject *obj, QEvent *event)
         int delta = wheelEvent->angleDelta().y();
         if (delta > 0)
         {
-            this->timeIncrement();
+            this->timeIncrementing();
         }else if (delta < 0){
-            this->timeDecrement();
+            this->timeDecrementing();
         }
     }
 
